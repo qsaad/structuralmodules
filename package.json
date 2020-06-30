@@ -1,0 +1,21 @@
+{
+  "name": "templatenuvufi",
+  "version": "1.0.0",
+  "description": "template for nuxt vuetify and firebase",
+  "author": "Alpesh Chavda",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/dotenv": "^1.4.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
