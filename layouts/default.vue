@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- NAV SIDE BAR -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
@@ -10,7 +10,7 @@
       <v-treeview 
         dense
         
-        active-class="teal darken-3 teal--text"
+        active-class="grey lighten-2 teal--text"
         :items="filteredElements"
         :search="search"
         :open="filteredKeys"
@@ -27,7 +27,7 @@
              <v-chip class="ma-0 px-4" x-small :color="chipcolor(item.chip)" v-if="item.chip != null">{{item.chip}}</v-chip>
         </template>
         <template v-slot:label="{ item }">
-             <span v-if="item.children" class="blue--text font-weight-bold">{{item.name}}</span>
+             <span v-if="item.children" class="black--text font-weight-bold">{{item.name}}</span>
              <span v-else class="teal--text d-flex" @click="goto(item.to)">{{item.text}}</span>
         </template>
       </v-treeview>

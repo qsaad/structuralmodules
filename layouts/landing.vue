@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <v-content>
       <!-- <v-container fluid fill-height class="pa-0 ma-0"> -->
         <nuxt />
