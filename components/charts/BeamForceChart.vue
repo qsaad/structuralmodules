@@ -1,6 +1,6 @@
 <template>
-    <div class="chart-container" style="height:800px; width:400px">
-        <canvas id="myChart" ></canvas>
+    <div class="chart-container" style="min-width:300px">
+        <canvas :ref="chartREF"></canvas>
     </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
         chart: {}
     }),//DATA
     props:{
+        chartREF: {type: String, default: "1"},
         plotData: {type: Array, default: []},
         plotTitle: {type: String, default: ""},
         plotLabelX: {type: String, default: ""},
@@ -47,17 +48,20 @@ export default {
     },//WATCH
     computed:{
         plotChart(){
-            // let chart = null;
-            let ctx = document.getElementById("myChart").getContext("2d");
+            let ctx = this.$refs[this.chartREF].getContext('2d')
+            //let ctx = document.getElementById("myChart").getContext("2d");
             this.chart = new Chart(ctx, {
                 type: "line",
                 data: {
                     datasets: [
                     {
-                        //label: "My First dataset",
-                        //backgroundColor: "rgb(255, 99, 132)",
                         borderColor: "rgb(255, 99, 132)",
-                        data: this.plotData
+                        data: this.plotData,
+                        borderWidth: 2,
+                        lineTension : 0,
+                        fill: true,
+                        pointStyle: 'circle',
+                        pointRadius: 2,
                     }
                     ] //DATASET
                 }, //DATA
@@ -66,6 +70,7 @@ export default {
                     legend: {
                         display: false
                     }, //LEGENDS
+                    
                     title: {
                         display: true,
                         text: this.plotTitle

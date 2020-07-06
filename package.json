@@ -1,7 +1,7 @@
 {
-  "name": "templatenuvufi",
+  "name": "qsaad",
   "version": "1.0.0",
-  "description": "template for nuxt vuetify and firebase",
+  "description": "Quick Structural Analysis and Design",
   "author": "Alpesh Chavda",
   "private": true,
   "scripts": {
@@ -14,8 +14,10 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "chart.js": "^2.9.3",
+    "konva": "^7.0.2",
     "nuxt": "^2.0.0",
-    "vue-chartjs": "^3.5.0"
+    "vue-konva": "^2.1.3",
+    "vuetify": "^2.3.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0"

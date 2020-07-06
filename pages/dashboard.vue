@@ -4,14 +4,8 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <!-- INITIAL SETUP - NO DATA  -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <v-row dense justify="center" align="center" v-if="gid == ''">
-            <v-col cols="12" sm="6" md="4">
-                <v-chip outlined pill class="title font-weight-bold mt-1" color="info">
-                    INTIAL SETUP
-                </v-chip>
-            </v-col>
-        </v-row>
-        <v-row dense justify="center" align="center" v-else>
+     
+        <v-row dense justify="center" align="center">
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <!-- PANEL 1  -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

@@ -3,7 +3,7 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- NAV SIDE BAR -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-navigation-drawer v-model="drawer" width="350"  :clipped="clipped" fixed app>
+    <v-navigation-drawer v-model="drawer" width="350" id="sideNav"  :clipped="clipped" fixed app>
       <v-text-field v-model="search"  label="Looking for a module?" class="ma-2">
 
       </v-text-field>
@@ -37,7 +37,7 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- APP BAR -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-app-bar :clipped-left="clipped" dense fixed app>
+    <v-app-bar :clipped-left="clipped" id="topNav" class="d-print-none" dense fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon to="/">
         <v-icon>mdi-home</v-icon>  
@@ -54,11 +54,11 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- MAIN CONTENT -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-content>
+    <v-main id="mainContent">
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- FOOTER -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
@@ -148,3 +148,18 @@ import {modules} from '@/data/modules'
     }//METHODS
 }
 </script>
+
+<style scoped>
+    @media print{
+        #topNav,#sideNav{
+            display: none !important;
+        }
+        #mainContent {
+            position:absolute;
+            left:0;
+            top:0;
+        }
+    }
+
+</style>
+

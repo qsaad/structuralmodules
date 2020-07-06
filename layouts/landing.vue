@@ -1,10 +1,10 @@
 <template>
   <v-app light>
-    <v-content>
+    <v-main>
       <!-- <v-container fluid fill-height class="pa-0 ma-0"> -->
         <nuxt />
       <!-- </v-container> -->
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

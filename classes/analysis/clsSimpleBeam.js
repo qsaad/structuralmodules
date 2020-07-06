@@ -1,33 +1,74 @@
+import {sumArrays} from '@/library/functions'
+
 export default class SimpleBeam{
-    constructor({ L = 22, w = 1, E = 29000, Ix = 100 }) {
+    constructor({ L = 22, w = 1, E = 29000, Ix = 100, PL = [], LF = 1 }) {
 		this.L = L;
 		this.w = w;
 		this.E = E;
 		this.Ix = Ix;
+		this.PL = PL
+		this.LF = LF
+		this.segment = 0.25
 	} //CONSTRUCTOR
 	//--------------------------------------//
 	//LENGTH
 	//--------------------------------------//
 	Li() {
-		return [...Array.from({ length: this.L / 0.5 }, (x, i) => i * 0.5), this.L];
+		return [...Array.from({ length: this.L /this.segment }, (x, i) => i *this.segment), this.L];
+	}
+
+	//--------------------------------------//
+	//LEFT REACTION
+	//--------------------------------------//
+
+	RL(){
+		let RW = this.w*this.L/2
+		let RP = this.PL.reduce((total, item) => total + item.P*(this.L-item.a)/this.L, 0)
+			
+		return (RW + RP)*this.LF
+	}
+
+	//--------------------------------------//
+	//RIGHT REACTION
+	//--------------------------------------//
+
+	RR(){
+		let RW = this.w*this.L/2
+		let RP = this.PL.reduce((total, item) => total + item.P*item.a/this.L, 0); 
+		return (RW + RP)*this.LF
 	}
 
 	//--------------------------------------//
 	//FLEXURE
 	//--------------------------------------//
 	M(){
-		return ((this.w * this.L * this.L) / 8)
+		return Math.max(...this.Mi())
 	}
 
 	Mi() {
 		let Lx = this.Li();
-		let arr = [];
+		let Mw = [];
+		let Mp = []
 
+		//MOMENT DUE TO UNIFORM LOAD
 		Lx.forEach((x, i) => {
-			arr[i] = ((this.w * x) / 2) * (this.L - x);
+			Mw[i] = ((this.w * this.LF * x) / 2) * (this.L - x) 
 		});
+		//MOMENT DUE TO POINT LOAD
+		Lx.forEach((x, i) => {
+			Mp.push(
+				this.PL.reduce((total, item) => {
+					if(x < item.a ){
+						return total + item.P*this.LF*(this.L-item.a)*x/this.L
+					}//IF
+					else{
+						return total + item.P*this.LF*(this.L-item.a)*x/this.L-item.P*(x-item.a)
+					}//ELSE
+				},0)
+			)
+		})
 
-		return arr;
+		return sumArrays([Mw,Mp]);
 	}
 
 	plotM() {
@@ -46,18 +87,36 @@ export default class SimpleBeam{
 	//SHEAR
 	//--------------------------------------//
 	V(){
-		return (this.w * this.L) / 2
+		return (this.w * this.LF * this.L) / 2
 	}
 
 	Vi() {
 		let Lx = this.Li();
-		let arr = [];
+		let Vw = [];
+		let Vp = [];
 
+		//DUE TO UNIFORM LOAD
 		Lx.forEach((x, i) => {
-			arr[i] = this.w * (this.L / 2 - x);
+			Vw[i] = this.w * this.LF * (this.L / 2 - x);
 		});
 
-		return arr;
+		//DUE TO POINT LOAD
+		let RP = this.PL.reduce((total, item) => total + item.P*(this.L-item.a)/this.L, 0)
+
+		Lx.forEach((x, i) => {
+			Vp.push(
+				RP - this.PL.reduce((total, item) => {
+					if(x <= item.a ){
+						return total + 0
+					}//IF
+					else{
+						return total + item.P*this.LF
+					}//ELSE
+				},0)
+			)
+		})
+
+		return sumArrays([Vw,Vp]);
 	}
 
 	plotV() {
@@ -76,18 +135,35 @@ export default class SimpleBeam{
 	//DEFLECTION
 	//--------------------------------------//
 	D(){
-		return (5 * this.w * Math.pow(this.L, 4) * 1728) / (384 * this.E * this.Ix)
+		//return (5 * this.w * Math.pow(this.L, 4) * 1728) / (384 * this.E * this.Ix)
+		return Math.max(...this.Di())
 	}
 
 	Di() {
 		let Lx = this.Li();
-		let arr = [];
+		let Dw = [];
+		let Dp = [];
 
+		//DUE TO UNIFORM LOAD
 		Lx.forEach((x, i) => {
-			arr[i] = ((this.w * x * 1728) / (24 * this.E * this.Ix)) * (Math.pow(this.L, 3) - 2 * this.L * Math.pow(x, 2) + Math.pow(x, 3));
+			Dw[i] = ((this.w * x * 1728) / (24 * this.E * this.Ix)) * (Math.pow(this.L, 3) - 2 * this.L * Math.pow(x, 2) + Math.pow(x, 3));
 		});
 
-		return arr;
+		//DUE TO POINT LOAD
+		Lx.forEach((x, i) => {
+			Dp.push(
+				this.PL.reduce((total, item) => {
+					if(x < item.a ){
+						return total + item.P*(this.L-item.a)*x*1728*(Math.pow(this.L,2)-Math.pow(this.L-item.a,2)-Math.pow(x,2))/(6*this.E*this.Ix*this.L)
+					}//IF
+					else{
+						return total + item.P*(this.L-x)*item.a*1728*((2*this.L*x)-Math.pow(x,2)-Math.pow(item.a,2))/(6*this.E*this.Ix*this.L)
+					}//ELSE
+				},0)
+			)
+		})
+
+		return sumArrays([Dw,Dp]);
 	}
 
 	plotD() {

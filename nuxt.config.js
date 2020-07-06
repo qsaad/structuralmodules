@@ -14,8 +14,12 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      //{ rel: 'stylesheet', href: 'https://printjs-4de6.kxcdn.com/print.min.css' }
+    ],
+    script: [
+      //{ src: 'https://printjs-4de6.kxcdn.com/print.min.js' }
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -29,8 +33,7 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: ['~/plugins/konva.js'],
   /*
   ** Nuxt.js dev-modules
   */
