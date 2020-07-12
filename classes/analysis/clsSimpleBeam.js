@@ -1,4 +1,4 @@
-import {sumArrays} from '@/library/functions'
+import {sumArrays} from '~/library/mathLib'
 
 export default class SimpleBeam{
     constructor({ L = 22, w = 1, E = 29000, Ix = 100, PL = [], LF = 1 }) {

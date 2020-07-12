@@ -6,19 +6,16 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    title: 'QSAAD',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'Structural design and analysis modules for Concrete, Steel, Masonry, Wood and Coldform'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      //{ rel: 'stylesheet', href: 'https://printjs-4de6.kxcdn.com/print.min.css' }
     ],
     script: [
-      //{ src: 'https://printjs-4de6.kxcdn.com/print.min.js' }
     ],
   },
   /*
@@ -33,7 +30,8 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['~/plugins/konva.js'],
+  //plugins: [{src: '~/plugins/vue-konva.js', mode: 'client'}],
+  plugins: ['~/plugins/vue-konva.js','~/plugins/module-components.js'],
   /*
   ** Nuxt.js dev-modules
   */
@@ -44,9 +42,9 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
+    //'@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
+    //'@nuxtjs/dotenv',
   ],
   /*
   ** vuetify module configuration

@@ -99,9 +99,7 @@ export default {
      
     },//WATCH
     computed:{
-        gid(){
-            return this.$store.getters.gid
-        },
+        
     },//COMPUTED
     methods:{
      

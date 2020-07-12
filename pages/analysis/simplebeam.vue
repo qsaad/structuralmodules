@@ -8,9 +8,6 @@
                 <v-toolbar flat dense color="blue white--text text-h5 font-weight-bold">
                     SIMPLE BEAM
                     <v-spacer></v-spacer>
-                    <v-btn icon @click="printPDF" class="d-print-none">
-                        <v-icon color="white">mdi-printer</v-icon>
-                    </v-btn>
                 </v-toolbar>
                 <!-- +++++++++++++++++++++++++++++++ -->
                 <!-- INPUT AND OUTPUT -->
@@ -73,19 +70,13 @@
                                <span class="subtitle-1"> in</span>
                             </div>
                         </div> -->
-                        <div>
+                        <div id="container">
                             <v-stage :config="{width:width, height:height}">
                                 <v-layer ref="layer">
-                                    <v-rect :config="configCanvas">
-                                    </v-rect>
+                                    <!-- <v-rect :config="configCanvas">
+                                    </v-rect> -->
                                     <!-- TOOLBAR -->
                                     <!-- +++++++++++++++++++++++++++++++++++++++++ -->
-                                    <!-- SPAN -->
-                                   
-                                    <!-- SIZE -->
-                                    
-                                     <!-- UDL -->
-                                    
                                     <!-- POINTLOAD -->
                                     <konva-label :xo="0.60*width" :yo="0.03*height" text="ADD PL" :unit="''" :name="'PL'" :pointer="''" @selected-text="edit"></konva-label>
 
@@ -94,10 +85,10 @@
                                     <!-- POINT LOAD -->
                                     <konva-point-load :xo="0.1*width" :yo="0.31*height" :width="0.8*width" :span="input.L" :pointLoads="input.PL" @delete-point-load="removePointLoad" v-if="input.PL.length > 0"></konva-point-load>
                                     <!-- UNIFORM LOAD -->
-                                    <!-- <konva-text :xo="0.4*width" :yo="0.41*height" :text="input.w" :unit="'k/ft'" v-if="input.w > 0"></konva-text> -->
+                                    <konva-text :xo="0.4*width" :yo="0.41*height" :text="input.w" :unit="'k/ft'" v-if="input.w > 0"></konva-text>
                                     <konva-uniform-load :xo="0.1*width" :yo="0.46*height" :width="0.8*width" :height="0.01*height" v-if="input.w > 0"></konva-uniform-load>
                                    
-                                    <konva-label :xo="0.4*width" :yo="0.39*height" :text="input.w" :unit="'k/ft'" :name="'UDL'" :pointer="''" @selected-text="edit"></konva-label>
+                                    <!-- <konva-label :xo="0.4*width" :yo="0.39*height" :text="input.w" :unit="'k/ft'" :name="'UDL'" :pointer="''" @selected-text="edit"></konva-label> -->
                                     
                                     
                                     <!-- BEAM SPAN -->
@@ -117,6 +108,7 @@
 
                                     <konva-text :xo="0.42*width" :yo="0.8*height" symbol="M" :text="forces.M" unit="k-ft" color="red"></konva-text>
                                     <konva-text :xo="0.42*width" :yo="0.85*height" symbol="D" :text="forces.D" unit="in" color="red"></konva-text>
+                                   
                                 </v-layer>
                             </v-stage>
                         </div>
@@ -213,9 +205,7 @@ import KonvaLabel from '@/components/graphics/KonvaLabel.vue'
 import KonvaUniformLoad from '@/components/graphics/KonvaUniformLoad.vue'
 import KonvaPointLoad from '@/components/graphics/KonvaPointLoad.vue'
 
-import {graphics} from '@/mixins/graphicsMixin'
-
-//import print from 'print-js'
+import {graphicsMixin} from '@/mixins/graphicsMixin'
 
 export default {
     head: {
@@ -226,7 +216,7 @@ export default {
         BeamForceChart, KonvaSpan, KonvaSimpleSupport, KonvaText, KonvaLabel,
         KonvaUniformLoad, KonvaPointLoad
     },//COMPONENTS
-    mixins : [graphics],
+    mixins : [graphicsMixin],
     layout : 'default',
     data: () => ({
         input: {
@@ -303,41 +293,10 @@ export default {
                 )
             , 1)
         },
-        printPDF(){
-            //window.resizeTo(800, 800);
-            //window.resizeTo(screen.width-300,screen.height-500)
-            //window.print();
-            window.innerWidth = 960
-            window.innerHeight = 1000
-
-            //let d = document.getElementById("sideNav");
-            //d.className += " removeSideNav";
-            window.print();
-        
-        }
+       
     },//METHODS  
 }//EXPORT DEFAULT
 </script>
 
-<style scoped>
-   
-    .removeSideNav{
-        display: none;
-    }
-    /* div.v-navigation-drawer__content{
-        display: none !important;
-    } */
-    /* @media print{
-        #topNav,#sideNav{
-            display: none !important;
-        }
-        #mainContent {
-            position:absolute;
-            left:0;
-            top:0;
-        }
-    } */
-
-</style>
 
    

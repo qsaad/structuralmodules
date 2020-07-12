@@ -6,9 +6,9 @@
                 y: yo,
                 sides: 3,
                 radius: radius,
-                fill: 'green',
-                stroke: 'green',
-                strokeWidth: 3,
+                fill: '#f4a460',
+                stroke: '#000',
+                strokeWidth: 1,
                 rotation : rotation
             }"
         ></v-regular-polygon>

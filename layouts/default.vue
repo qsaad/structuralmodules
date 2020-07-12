@@ -3,7 +3,7 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- NAV SIDE BAR -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-navigation-drawer v-model="drawer" width="350" id="sideNav"  :clipped="clipped" fixed app>
+    <v-navigation-drawer v-model="drawer" width="350"  :clipped="clipped" fixed app>
       <v-text-field v-model="search"  label="Looking for a module?" class="ma-2">
 
       </v-text-field>
@@ -37,24 +37,19 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- APP BAR -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-app-bar :clipped-left="clipped" id="topNav" class="d-print-none" dense fixed app>
+    <v-app-bar :clipped-left="clipped" dense fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon to="/">
         <v-icon>mdi-home</v-icon>  
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <!-- <v-avatar color="white--text" size=36>
-          AC
-      </v-avatar> -->
-      <!-- <v-btn icon @click="logout">
-          <v-icon>mdi-logout</v-icon>
-      </v-btn> -->
+    
     </v-app-bar>
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
     <!-- MAIN CONTENT -->
     <!-- ++++++++++++++++++++++++++++++++++++++++ -->
-    <v-main id="mainContent">
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
@@ -76,7 +71,7 @@
 import {modules} from '@/data/modules'
 
   export default {
-    middleware : ['auth'],
+    middleware : [],
     components:{},
     mixins : [],
     data () {
@@ -138,28 +133,16 @@ import {modules} from '@/data/modules'
         return val == "updated" ? "orange darken-2" : "primary"
       },
       goto(path){
-        console.log(path)
         this.$router.replace(path)
       },
-      // logout(){
-      //   this.$store.dispatch('logout')
-      // },//SIGNOUT
+     
     
     }//METHODS
 }
 </script>
 
 <style scoped>
-    @media print{
-        #topNav,#sideNav{
-            display: none !important;
-        }
-        #mainContent {
-            position:absolute;
-            left:0;
-            top:0;
-        }
-    }
+   
 
 </style>
 

@@ -3,10 +3,11 @@ export const modules = [
       id: 100,
       name: 'Analysis',
       children: [
-        { id: 101, name: 'Analysis Simple Beam', text: "Simple Beam", chip: null, to: '../analysis/simplebeam' },
+        { id: 101, name: 'Analysis Simple Beam', text: "Simple Span Beam", chip: null, to: '../analysis/simplespanbeam' },
         { id: 102, name: 'Analysis Cantilever Beam', text: "Cantilever Beam", chip: null, to: '../analysis/cantileverbeam' },
         { id: 103, name: 'Analysis Fixed Beam', text: "Fixed Beam", chip: null, to: '../analysis/fixedbeam' },
         { id: 104, name: 'Analysis Overhang Beam', text: "Overhang Beam", chip: null, to: '../analysis/overhangbeam' },
+        // { id: 105, name: 'Analysis Simple Beam', text: "Simple Beam", chip: null, to: '../analysis/simplebeam' },
       ],
     },
 
