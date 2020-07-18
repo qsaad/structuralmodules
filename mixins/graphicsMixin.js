@@ -3,19 +3,19 @@ export const graphicsMixin =  {
         return{
             width : 350,
             height : 300,
-            isEdit: 'SPAN',
+           
             configCanvas:{
                 x: 0,
                 y: 0,
                 width: 350,
                 height: 350,
-                //fill: '#F5F5F5',
                 fill: '#B3E5FC',
+                fillEnabled: false,
+                stroke: '#EEE',
+                storkeWidth: 3,
             },
-
             messages : [],
             parameters : []
-            
         }//RETURN
     },//DATA
     created(){
@@ -32,9 +32,7 @@ export const graphicsMixin =  {
        
     },//COMPUTED
     methods:{
-        edit(val){
-            this.isEdit = val
-        },
+       
 
         //---------------------------------------------------
         //BELOW TO BE DELETED

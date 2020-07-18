@@ -1,16 +1,5 @@
 <template>
     <div>
-        <!-- <v-line 
-            :config="{
-                points: [xo,yo,xo+length,yo+height],
-                stroke: '#f4a460',
-                strokeWidth: 5,
-                lineCap: 'round',
-                lineJoin: 'round'
-            }"
-        >
-        </v-line> -->
-
         <v-rect 
             :config="{
                 x: xo,

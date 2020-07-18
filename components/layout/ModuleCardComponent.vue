@@ -7,13 +7,16 @@
             <v-toolbar flat dense color="blue white--text text-h5 font-weight-bold">
                 {{title}}
                 <v-spacer></v-spacer>
+                <!-- <v-btn @click="printPDF()">PDF</v-btn> -->
             </v-toolbar>
             <!-- +++++++++++++++++++++++++++++++ -->
             <!-- GRAPHICS -->
             <!-- +++++++++++++++++++++++++++++++ -->
             <v-row justify="center" align="center">  
                 <v-col cols="12" xs="12" sm="8" md="6" class="d-flex justify-center">
-                   <slot name="graphics"></slot>
+                    <div id="moduleCalculation">
+                        <slot name="graphics"></slot>
+                   </div>
                 </v-col>
             </v-row>
             <!-- +++++++++++++++++++++++++++++++ -->
@@ -29,7 +32,7 @@
             <!-- +++++++++++++++++++++++++++++++ -->
             <v-row>
                 <v-col cols="12">
-                   <slot name="calculations"></slot>
+                    <slot name="calculations"></slot>
                 </v-col>
             </v-row>
             <!-- +++++++++++++++++++++++++++++++ -->
@@ -45,6 +48,7 @@
 </template>
 
 <script>
+//import {printPdfMixin} from '@/mixins/printPdfMixin'
 
 
 export default {
@@ -52,6 +56,7 @@ export default {
     components:{
         
     },//COMPONENTS
+    //mixins : [printPdfMixin],
     props:{
        title : {type:String,default:""},
     },

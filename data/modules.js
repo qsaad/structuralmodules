@@ -107,8 +107,9 @@ export const modules = [
       id: 1000,
       name: 'Wind',
       children: [
-        { id: 1001, name: 'Wind Main', text: "Main", chip: null, to: '../wind/main' },
-        { id: 1002, name: 'Wind Component', text: "Component", chip: null, to: '../wind/component' },
+        { id: 1001, name: 'Basic Pressure', text: "Basic", chip: null, to: '../wind/basic' },
+        { id: 1002, name: 'Wind Main', text: "Main", chip: null, to: '../wind/main' },
+        { id: 1003, name: 'Wind Component', text: "Component", chip: null, to: '../wind/component' },
       ],
     },
 

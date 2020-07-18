@@ -43,7 +43,7 @@ export default {
         yo : {type:Number,default:0},
         name : {type:String,default:''},
         symbol : {type:String,default:''},
-        text : {type:Number,default:0},
+        text : {type:[String, Number],default:0},
         unit : {type:String,default:''},
         rotation : {type:Number,default:0},
         decimal : {type:Number,default:2},
@@ -62,7 +62,13 @@ export default {
     },//MOUNTED
     computed:{
         computedText(){
-            return this.text == '' ? this.text + ' ' + this.unit :  (this.text).toFixed(this.decimal) + ' ' + this.unit
+            if(typeof this.text === 'string'){
+                return this.text + ' ' + this.unit
+            }
+            else{
+                return this.text == '' ? this.text + ' ' + this.unit :  (this.text).toFixed(this.decimal) + ' ' + this.unit
+            }
+            
         },
    
     },//COMPUTED

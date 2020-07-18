@@ -3,7 +3,7 @@
         <!-- +++++++++++++++++++++++++++++++ -->
         <!-- MODULE CARD -->
         <!-- +++++++++++++++++++++++++++++++ -->
-        <module-card-component title="MASONRY WALL CAPACITY (ASD)">
+        <module-card-component title="MASONRY WALL CAPACITY">
             <!-- +++++++++++++++++++++++++++++++ -->
             <!-- GRAPHICS -->
             <!-- +++++++++++++++++++++++++++++++ -->
